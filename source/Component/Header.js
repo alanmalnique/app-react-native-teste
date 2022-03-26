@@ -27,7 +27,7 @@ export default function Header({ acao_voltar, navigation }){
 }
 
 const page_style = StyleSheet.create({
-    header: { height: 64, backgroundColor: 'white', shadowColor: 'black', elevation: 6, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 17 },
+    header: { height: 64, zIndex: 2, backgroundColor: 'white', shadowColor: 'black', elevation: 6, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 17 },
     logo: { width: 169, alignSelf: 'center', marginRight: 'auto' },
     botao_filtrar: { width: 37, height: 37, borderRadius: 37, alignSelf: 'center', backgroundColor: '#3CC6AA', flexDirection: 'column' },
     hamburger: { width: 21, height: 3, backgroundColor: 'white', borderRadius: 3, alignSelf: 'center', marginTop: 3 },
