@@ -23,8 +23,9 @@ export default function NewsList({ route, navigation }) {
 	const [loading, setLoading] = useState(false);
 
 	const [categorias, setCategorias] = useState([]);
-	const [ordenar, setOrdenar] = useState('asc');
+	const [ordenar, setOrdenar] = useState('');
 	const [ordenarOptions, setOrdenarOptions] = useState([
+		{ value: '', description: 'Padrão' },
 		{ value: 'asc', description: 'A-Z' },
 		{ value: 'desc', description: 'Z-A' },
 		{ value: 'viewDesc', description: 'Maior visualização' },
@@ -118,6 +119,8 @@ export default function NewsList({ route, navigation }) {
 
 	return (
 		<SafeAreaView style={page_style.container}>
+
+			<StatusBar barStyle="dark-content" backgroundColor="transparent" />
 
 			<Loading show={loading} />
 

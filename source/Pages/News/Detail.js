@@ -35,6 +35,8 @@ export default function NewsList({ route, navigation: { goBack } }) {
 	return (
 		<SafeAreaView style={page_style.container}>
 
+			<StatusBar barStyle="dark-content" backgroundColor="transparent" />
+
 			<Loading show={loading} />
 
 			<Header acao_voltar={() => { goBack() }} />
@@ -42,8 +44,6 @@ export default function NewsList({ route, navigation: { goBack } }) {
 			<ScrollView contentContainerStyle={page_style.conteudo}>
 
 				<Text style={[page_style.titulo, Styles.color_blue_default]}>{decode(props.titulo,  {level: 'html5'})}</Text>
-
-				<Image style={page_style.imagem} source={{ uri: props.imagem }} resizeMode="cover" />
 
 				<View style={{ paddingHorizontal: 17 }}>
 					<HTML tagsStyles={tagsStyles} contentWidth={Dimensions.get('window').width - 34} onLoadStart={() => { setLoading(true) }} onLoadEnd={() => setLoading(false) } source={{ html: props.texto_formatado }} />
