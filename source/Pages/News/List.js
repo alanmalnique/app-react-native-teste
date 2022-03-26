@@ -1,5 +1,5 @@
 /* Importações React */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, ScrollView, View, SafeAreaView, StatusBar, Text, Image, TouchableOpacity } from 'react-native';
 
 /* Importações Plugins */
@@ -31,6 +31,8 @@ export default function NewsList({ route, navigation }) {
 		{ value: 'viewDesc', description: 'Maior visualização' },
 		{ value: 'viewAsc', description: 'Menor visualização' }
 	]);
+
+	const scrollViewRefs = useRef([]);
 
 	useEffect(() => {
 		carregaCategorias();
@@ -148,11 +150,11 @@ export default function NewsList({ route, navigation }) {
 							<View key={'categoria-'+item.id}>
 								<View style={page_style.conteudo_titulo}>
 									<Text style={[page_style.titulo_lista, Styles.color_blue_default]}>{decode(item.descricao.toUpperCase(),  {level: 'html5'})}</Text>
-									<TouchableOpacity style={page_style.ver_mais}>
+									<TouchableOpacity style={page_style.ver_mais} onPress={() => { scrollViewRefs.current[index].scrollTo({ x: (scrollViewRefs.current[index].positionX ? scrollViewRefs.current[index].positionX + 270 : 270), animated: true }) }}>
 										<Text>VER MAIS ►</Text>
 									</TouchableOpacity>
 								</View>
-								<ScrollView contentContainerStyle={page_style.lista} horizontal={true}>
+								<ScrollView contentContainerStyle={page_style.lista} horizontal={true} ref={el => (scrollViewRefs.current[index] = el)} onScroll={(e) => { scrollViewRefs.current[index].positionX = e.nativeEvent.contentOffset.x }}>
 									{item.posts.map((post,indice) => {
 										return (
 											<TouchableOpacity key={"post"+post.id} style={page_style.item} onPress={() => { acessaPost(post) }}>
